@@ -1,6 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./ipv6.nix
   ];
 
   networking.hostName = "kashyyyk";
