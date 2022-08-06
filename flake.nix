@@ -18,7 +18,7 @@
     deploy.nodes = {
       kashyyyk = {
         sshOpts = [ "-p" "222" ];
-        hostname = "142.132.168.168";
+        hostname = "kashyyyk.bricker.io";
         fastConnection = true;
 
         profiles.system = {
