@@ -2,7 +2,7 @@
 let
   utils = import ./util/include.nix { lib = lib; };
   imports =
-    (utils.includeDir ./common) ++
+    (utils.includeDir ./modules/base) ++
     (utils.includeDir ./options) ++
     [
       ./overlay

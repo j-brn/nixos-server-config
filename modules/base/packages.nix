@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    docker
-    docker-compose
     vim
     git
     ripgrep

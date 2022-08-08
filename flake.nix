@@ -17,6 +17,7 @@
           modules = [
             ./default.nix
             ./hosts/kashyyyk/configuration.nix
+            ./modules/optional/docker.nix
           ];
         };
       };
