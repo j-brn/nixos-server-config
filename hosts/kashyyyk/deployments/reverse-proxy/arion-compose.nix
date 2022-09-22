@@ -20,11 +20,11 @@
          ];
 
          labels = {
-           "com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen" = "";
+            "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy" = "";
          };
 
          networks = [
-           "reverse-proxy"
+           "proxy-network"
          ];
        };
 
@@ -33,13 +33,20 @@
          restart = "always";
 
          volumes = [
-           "dhparam:/etc/nginx/dhparam"
+           "vhost:/etc/nginx/vhost.d"
+           "html:/usr/share/nginx/html"
            "certs:/etc/nginx/certs:rw"
            "acme:/etc/acme.sh"
-           "/var/run/docker.sock:/tmp/docker.sock:ro"
+           "/var/run/docker.sock:/var/run/docker.sock:ro"
          ];
        };
      };
+
+      networks = {
+        proxy-network = {
+          external = true;
+        };
+      };
 
      docker-compose.raw = {
        volumes = {
@@ -49,12 +56,6 @@
          dhparam = {};
          certs = {};
          acme = {};
-       };
-
-       networks = {
-         reverse-proxy = {
-           external = true;
-         };
        };
      };
   };

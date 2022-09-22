@@ -9,7 +9,7 @@
     script =
       let
         dockercli = "${config.virtualisation.docker.package}/bin/docker";
-        network = "reverse-proxy";
+        network = "proxy-network";
       in ''
         check=$(${dockercli} network ls | grep "${network}" || true)
         if [ -z "$check" ]; then

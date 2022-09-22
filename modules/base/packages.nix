@@ -11,5 +11,6 @@
     sudo
     bottom
     wrk2
+    jq
   ];
 }
