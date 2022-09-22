@@ -1,11 +1,11 @@
 {
   inputs = {
     nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
-    deploy-rs = { url = "github:serokell/deploy-rs"; };
-    agenix = { url = "github:ryantm/agenix"; };
+    deploy-rs = { url = "github:serokell/deploy-rs"; inputs.nixpkgs.follows = "nixpkgs";};
+    agenix = { url = "github:ryantm/agenix";  inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
-  outputs = { self, nixpkgs, deploy-rs, agenix, ... }:
+  outputs = { self, nixpkgs, deploy-rs, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -14,7 +14,9 @@
       nixosConfigurations = {
         "kashyyyk" = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs self; };
           modules = [
+            agenix.nixosModule
             ./default.nix
             ./hosts/kashyyyk/configuration.nix
             ./modules/optional/docker.nix

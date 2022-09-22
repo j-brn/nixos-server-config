@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     docker
-    docker-compose
+    arion
   ];
 
   users.users.admin.extraGroups = [ "docker" ];
