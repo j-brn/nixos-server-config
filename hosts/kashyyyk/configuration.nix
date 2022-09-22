@@ -3,6 +3,8 @@
   imports = [
     ./hardware-configuration.nix
     ./ipv6.nix
+    ./arion.nix
+    ./deployments/reverse-proxy
   ];
 
   networking.hostName = "kashyyyk";

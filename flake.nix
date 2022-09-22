@@ -3,9 +3,10 @@
     nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
     deploy-rs = { url = "github:serokell/deploy-rs"; inputs.nixpkgs.follows = "nixpkgs";};
     agenix = { url = "github:ryantm/agenix";  inputs.nixpkgs.follows = "nixpkgs"; };
+    arion = { url = "github:hercules-ci/arion"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
-  outputs = { self, nixpkgs, deploy-rs, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, deploy-rs, agenix, arion, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -17,6 +18,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             agenix.nixosModule
+            arion.nixosModules.arion
             ./default.nix
             ./hosts/kashyyyk/configuration.nix
             ./modules/optional/docker.nix

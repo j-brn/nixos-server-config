@@ -4,10 +4,6 @@
     enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    docker
-    arion
-  ];
-
+  environment.systemPackages = with pkgs; [ docker];
   users.users.admin.extraGroups = [ "docker" ];
 }

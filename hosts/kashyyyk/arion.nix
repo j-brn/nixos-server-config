@@ -1,0 +1,5 @@
+{
+  virtualisation.arion = {
+    backend = "docker";
+  };
+}
