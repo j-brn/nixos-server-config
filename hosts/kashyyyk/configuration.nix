@@ -4,8 +4,11 @@
     ./hardware-configuration.nix
     ./ipv6.nix
     ./arion.nix
+
+    # deployments
     ./deployments/reverse-proxy
     ./deployments/bookstack
+    ./deployments/watchtower
   ];
 
   networking.hostName = "kashyyyk";
