@@ -35,7 +35,7 @@
     };
 
     networks = {
-      bookstack = {};
+      bookstack = { };
       proxy-network = {
         external = true;
       };
@@ -43,8 +43,8 @@
 
     docker-compose.raw = {
       volumes = {
-        bookstack_data = {};
-        mariadb_data = {};
+        bookstack_data = { };
+        mariadb_data = { };
       };
     };
   };
