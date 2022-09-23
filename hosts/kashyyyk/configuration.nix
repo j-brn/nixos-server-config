@@ -5,6 +5,7 @@
     ./ipv6.nix
     ./arion.nix
     ./deployments/reverse-proxy
+    ./deployments/bookstack
   ];
 
   networking.hostName = "kashyyyk";
