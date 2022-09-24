@@ -3,6 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     ./ipv6.nix
+
+    # shared deployments
+    ../../deployments/reverse-proxy
+    ../../deployments/watchtower
   ];
 
   networking.hostName = "bespin";
