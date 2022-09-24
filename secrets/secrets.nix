@@ -6,5 +6,6 @@ let
 in
 {
   "bookstack_database.env.age".publicKeys = allKeys;
+  "vaultwarden.env.age".publicKeys = allKeys;
 }
 

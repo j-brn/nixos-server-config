@@ -9,6 +9,7 @@
     ./deployments/reverse-proxy
     ./deployments/bookstack
     ./deployments/watchtower
+    ./deployments/vaultwarden
   ];
 
   networking.hostName = "kashyyyk";
