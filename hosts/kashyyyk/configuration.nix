@@ -3,12 +3,13 @@
   imports = [
     ./hardware-configuration.nix
     ./ipv6.nix
-    ./arion.nix
+
+    # shared deployments
+    ../../deployments/reverse-proxy
+    ../../deployments/watchtower
 
     # deployments
-    ./deployments/reverse-proxy
     ./deployments/bookstack
-    ./deployments/watchtower
     ./deployments/vaultwarden
   ];
 

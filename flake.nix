@@ -21,9 +21,9 @@
             arion.nixosModules.arion
             ./default.nix
             ./hosts/kashyyyk/configuration.nix
-            ./modules/optional/docker.nix
           ];
         };
+
         "bespin" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs self; };
@@ -32,7 +32,6 @@
             arion.nixosModules.arion
             ./default.nix
             ./hosts/bespin/configuration.nix
-            ./modules/optional/docker.nix
           ];
         };
       };
