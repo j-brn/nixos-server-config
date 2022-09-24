@@ -24,6 +24,17 @@
             ./modules/optional/docker.nix
           ];
         };
+        "bespin" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs self; };
+          modules = [
+            agenix.nixosModule
+            arion.nixosModules.arion
+            ./default.nix
+            ./hosts/bespin/configuration.nix
+            ./modules/optional/docker.nix
+          ];
+        };
       };
 
       devShells.${system}.default = pkgs.mkShell {
@@ -44,6 +55,19 @@
             sshUser = "admin";
             path =
               deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.kashyyyk;
+            user = "root";
+          };
+        };
+
+        bespin = {
+          sshOpts = [ "-p" "222" ];
+          hostname = "bespin.bricker.io";
+          fastConnection = true;
+
+          profiles.system = {
+            sshUser = "admin";
+            path =
+              deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.bespin;
             user = "root";
           };
         };
