@@ -27,7 +27,7 @@
           "PGID" = 1000;
           "TZ" = "Europe/Berlin";
         };
-        env_file = [ "/run/bookstack_database.env" ];
+        env_file = [ "/run/bookstack.env" ];
         volumes = [ "mariadb_data:/config" ];
         networks = [ "bookstack" ];
       };
