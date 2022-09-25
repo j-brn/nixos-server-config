@@ -10,5 +10,6 @@ in
   "vaultwarden.env.age".publicKeys = [ kashyyyk jonas ];
   "prometheus.yml.age".publicKeys = [ bespin jonas ];
   "prometheus-auth.yml.age".publicKeys = [ bespin jonas ];
+  "node-exporter-auth.yml.age".publicKeys = [ kashyyyk bespin jonas ];
 }
 

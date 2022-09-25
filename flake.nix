@@ -40,6 +40,7 @@
         buildInputs = with pkgs; [
           agenix.defaultPackage.${system}
           deploy-rs.defaultPackage.${system}
+          apacheHttpd
           nixpkgs-fmt
         ];
       };

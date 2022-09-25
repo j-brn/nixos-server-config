@@ -10,6 +10,7 @@
 
     # deployments
     ./deployments/prometheus
+    ./deployments/node-exporter
   ];
 
   networking.hostName = "bespin";

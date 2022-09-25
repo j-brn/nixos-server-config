@@ -11,6 +11,7 @@
     # deployments
     ./deployments/bookstack
     ./deployments/vaultwarden
+    ./deployments/node-exporter
   ];
 
   networking.hostName = "kashyyyk";
