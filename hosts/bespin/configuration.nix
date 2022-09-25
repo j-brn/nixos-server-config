@@ -7,6 +7,9 @@
     # shared deployments
     ../../deployments/reverse-proxy
     ../../deployments/watchtower
+
+    # deployments
+    ./deployments/prometheus
   ];
 
   networking.hostName = "bespin";
