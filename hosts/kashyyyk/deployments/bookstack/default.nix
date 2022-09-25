@@ -1,7 +1,7 @@
 {
   age.secrets.bookstack_database = {
-    file = ../../../../secrets/bookstack_database.env.age;
-    path = "/run/bookstack_database.env";
+    file = ../../../../secrets/bookstack.env.age;
+    path = "/run/bookstack.env";
   };
 
   virtualisation.arion.projects.bookstack.settings = {

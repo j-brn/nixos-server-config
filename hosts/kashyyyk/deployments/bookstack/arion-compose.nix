@@ -11,7 +11,7 @@
           "VIRTUAL_HOST" = "bookstack.bricker.io";
           "LETSENCRYPT_HOST" = "bookstack.bricker.io";
         };
-        env_file = [ "/run/bookstack_database.env" ];
+        env_file = [ "/run/bookstack.env" ];
         volumes = [ "bookstack_data:/config" ];
         networks = [
           "proxy-network"

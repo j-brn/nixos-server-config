@@ -6,7 +6,7 @@ let
   allKeys = [ kashyyyk bespin jonas ];
 in
 {
-  "bookstack_database.env.age".publicKeys = [ kashyyyk jonas ];
+  "bookstack.env.age".publicKeys = [ kashyyyk jonas ];
   "vaultwarden.env.age".publicKeys = [ kashyyyk jonas ];
   "prometheus.yml.age".publicKeys = [ bespin jonas ];
   "prometheus-auth.yml.age".publicKeys = [ bespin jonas ];
