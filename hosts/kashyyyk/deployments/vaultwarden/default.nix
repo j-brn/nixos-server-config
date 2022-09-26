@@ -4,6 +4,8 @@
     path = "/run/vaultwarden.env";
   };
 
+  virtualisation.docker.ensureNetworks = [ "proxy-network" ];
+
   virtualisation.arion.projects.vaultwarden.settings = {
     imports = [
       ./arion-compose.nix

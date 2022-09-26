@@ -5,6 +5,8 @@
     owner = "nobody";
   };
 
+  virtualisation.docker.ensureNetworks = [ "proxy-network" ];
+
   virtualisation.arion.projects.node-exporter.settings = {
     imports = [
       ./arion-compose.nix

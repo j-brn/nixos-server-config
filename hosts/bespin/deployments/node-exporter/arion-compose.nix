@@ -22,6 +22,7 @@
 
         networks = [
           "proxy-network"
+          "metrics"
         ];
 
         command = [
@@ -36,6 +37,10 @@
 
     networks = {
       proxy-network = {
+        external = true;
+      };
+
+      metrics = {
         external = true;
       };
     };

@@ -11,6 +11,11 @@
     owner = "nobody";
   };
 
+  virtualisation.docker.ensureNetworks = [
+    "proxy-network"
+    "metrics"
+  ];
+
   virtualisation.arion.projects.prometheus.settings = {
     imports = [
       ./arion-compose.nix
