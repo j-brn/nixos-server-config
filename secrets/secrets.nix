@@ -11,5 +11,6 @@ in
   "prometheus.yml.age".publicKeys = [ bespin jonas ];
   "prometheus-auth.yml.age".publicKeys = [ bespin jonas ];
   "node-exporter-auth.yml.age".publicKeys = [ kashyyyk bespin jonas ];
+  "grafanaPrometheusDatasource.yml.age".publicKeys = [ bespin jonas ];
 }
 

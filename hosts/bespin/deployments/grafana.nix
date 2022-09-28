@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ self, config, pkgs, ... }:
 let
   node-exporter-dashboard = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/rfmoz/grafana-dashboards/master/prometheus/node-exporter-full.json";
@@ -6,6 +6,11 @@ let
   };
 in
 {
+  age.secrets.grafanaPrometheusDatasource = {
+    file = "${self}/secrets/grafanaPrometheusDatasource.yml.age";
+    owner = "472";
+  };
+
   virtualisation = {
     docker.ensureNetworks = [
       "proxy-network"
@@ -16,6 +21,7 @@ in
       imports = [
         (import "${self}/deployments/grafana.nix" {
           host = "grafana.bricker.io";
+          prometheusDatasourceFilePath = config.age.secrets.grafanaPrometheusDatasource.path;
           inherit node-exporter-dashboard;
         })
       ];

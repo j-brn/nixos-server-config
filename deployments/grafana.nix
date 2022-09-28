@@ -1,4 +1,4 @@
-{ host, node-exporter-dashboard, ... }:
+{ host, node-exporter-dashboard, prometheusDatasourceFilePath, ... }:
 {
   config = {
     services = {
@@ -14,6 +14,7 @@
 
         volumes = [
           "${node-exporter-dashboard}:/etc/grafana/provisioning/dashboards/node-exporter.json"
+          "${prometheusDatasourceFilePath}:/etc/grafana/provisioning/datasources/prometheus.yml"
           "grafana_data:/var/lib/grafana"
         ];
 
