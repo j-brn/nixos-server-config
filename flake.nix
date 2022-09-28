@@ -8,14 +8,10 @@
   };
 
   outputs = { self, nixpkgs, deploy-rs, utils, agenix, arion, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
       nixosConfigurations = {
         "kashyyyk" = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
             agenix.nixosModule
@@ -26,7 +22,7 @@
         };
 
         "bespin" = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
             agenix.nixosModule
@@ -46,7 +42,7 @@
           profiles.system = {
             sshUser = "admin";
             path =
-              deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.kashyyyk;
+              deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.kashyyyk;
             user = "root";
           };
         };
@@ -59,7 +55,7 @@
           profiles.system = {
             sshUser = "admin";
             path =
-              deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.bespin;
+              deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bespin;
             user = "root";
           };
         };
