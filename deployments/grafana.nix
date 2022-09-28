@@ -1,9 +1,9 @@
-{ host, node-exporter-dashboard, prometheusDatasourceFilePath, ... }:
+{ host, node-exporter-dashboard, dashboardProviderFilePath, prometheusDatasourceFilePath, ... }:
 {
   config = {
     services = {
       grafana.service = {
-        image = "grafana/grafana";
+        image = "docker.io/grafana/grafana:9.1.6";
         restart = "unless-stopped";
 
         environment = {
@@ -13,6 +13,7 @@
         };
 
         volumes = [
+          "${dashboardProviderFilePath}:/etc/grafana/provisioning/dashboards/default.yml"
           "${node-exporter-dashboard}:/etc/grafana/provisioning/dashboards/node-exporter.json"
           "${prometheusDatasourceFilePath}:/etc/grafana/provisioning/datasources/prometheus.yml"
           "grafana_data:/var/lib/grafana"
