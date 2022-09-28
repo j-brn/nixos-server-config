@@ -2,11 +2,12 @@
   inputs = {
     nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
     deploy-rs = { url = "github:serokell/deploy-rs"; inputs.nixpkgs.follows = "nixpkgs"; };
+    utils = { url = "github:numtide/flake-utils"; };
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     arion = { url = "github:hercules-ci/arion"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
-  outputs = { self, nixpkgs, deploy-rs, agenix, arion, ... }@inputs:
+  outputs = { self, nixpkgs, deploy-rs, utils, agenix, arion, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -34,15 +35,6 @@
             ./hosts/bespin/configuration.nix
           ];
         };
-      };
-
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          agenix.defaultPackage.${system}
-          deploy-rs.defaultPackage.${system}
-          apacheHttpd
-          nixpkgs-fmt
-        ];
       };
 
       deploy.nodes = {
@@ -74,5 +66,19 @@
       };
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-    };
+    } // utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            agenix.defaultPackage.${system}
+            deploy-rs.defaultPackage.${system}
+            apacheHttpd
+            nixpkgs-fmt
+          ];
+        };
+      }
+    );
 }
