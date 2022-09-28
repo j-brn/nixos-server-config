@@ -73,11 +73,6 @@
         };
       };
 
-      apps.x86_64-linux.deploy = {
-        type = "app";
-        program = "${deploy-rs.packages.${system}.default}/bin/deploy";
-      };
-
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
