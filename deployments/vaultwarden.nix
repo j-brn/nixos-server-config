@@ -1,3 +1,4 @@
+{ host, environmentFilePath }:
 {
   config = {
     services = {
@@ -7,21 +8,16 @@
         environment = {
           "WEBSOCKET_ENABLED" = "true";
           "SIGNUPS_ALLOWED" = "false";
-          "VIRTUAL_HOST" = "vaultwarden.bricker.io";
+          "VIRTUAL_HOST" = host;
+          "LETSENCRYPT_HOST" = host;
           "VIRTUAL_PORT" = 80;
-          "LETSENCRYPT_HOST" = "vaultwarden.bricker.io";
         };
-        env_file = [
-          "/run/vaultwarden.env"
-        ];
-        volumes = [
-          "vaultwarden_data:/data"
-        ];
-        networks = [
-          "proxy-network"
-        ];
+        env_file = [ environmentFilePath ];
+        volumes = [ "vaultwarden_data:/data" ];
+        networks = [ "proxy-network" ];
       };
     };
+
     networks = {
       proxy-network = {
         external = true;

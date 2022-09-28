@@ -39,6 +39,8 @@
           "acme:/etc/acme.sh"
           "/var/run/docker.sock:/var/run/docker.sock:ro"
         ];
+
+        depends_on = [ "nginx-proxy" ];
       };
     };
 

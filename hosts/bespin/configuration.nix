@@ -1,16 +1,17 @@
-{ ... }:
+{ self, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./ipv6.nix
 
     # shared deployments
-    ../../deployments/reverse-proxy
-    ../../deployments/watchtower
+    "${self}/deployments/reverse-proxy"
+    "${self}/deployments/watchtower"
 
     # deployments
-    ./deployments/prometheus
-    ./deployments/node-exporter
+    ./deployments/prometheus.nix
+    ./deployments/node-exporter.nix
+    ./deployments/grafana.nix
   ];
 
   networking.hostName = "bespin";

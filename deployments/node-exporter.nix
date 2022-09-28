@@ -1,3 +1,4 @@
+{ host, authConfigPath, ... }:
 {
   config = {
     services = {
@@ -6,15 +7,15 @@
         restart = "unless-stopped";
 
         environment = {
-          "VIRTUAL_HOST" = "bespin.bricker.io";
-          "LETSENCRYPT_HOST" = "bespin.bricker.io";
+          "VIRTUAL_HOST" = host;
+          "LETSENCRYPT_HOST" = host;
           "VIRTUAL_PORT" = 9100;
           "VIRTUAL_PATH" = "/metrics/node";
           "VIRTUAL_DEST" = "/metrics";
         };
 
         volumes = [
-          "/run/node-exporter-auth.yml:/etc/node-exporter/auth.yml:ro"
+          "${authConfigPath}:/etc/node-exporter/auth.yml:ro"
           "/proc:/host/proc:ro"
           "/sys:/host/sys:ro"
           "/:/rootfs:ro"

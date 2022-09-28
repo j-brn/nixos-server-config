@@ -1,3 +1,4 @@
+{ host, bookstackEnvironmentFilePath, ... }:
 {
   config = {
     services = {
@@ -7,11 +8,11 @@
         environment = {
           "PUID" = 1000;
           "PGID" = 1000;
-          "APP_URL" = "https://bookstack.bricker.io";
-          "VIRTUAL_HOST" = "bookstack.bricker.io";
-          "LETSENCRYPT_HOST" = "bookstack.bricker.io";
+          "APP_URL" = "https://${host}";
+          "VIRTUAL_HOST" = host;
+          "LETSENCRYPT_HOST" = host;
         };
-        env_file = [ "/run/bookstack.env" ];
+        env_file = [ bookstackEnvironmentFilePath ];
         volumes = [ "bookstack_data:/config" ];
         networks = [
           "proxy-network"
@@ -27,7 +28,7 @@
           "PGID" = 1000;
           "TZ" = "Europe/Berlin";
         };
-        env_file = [ "/run/bookstack.env" ];
+        env_file = [ bookstackEnvironmentFilePath ];
         volumes = [ "mariadb_data:/config" ];
         networks = [ "bookstack" ];
       };

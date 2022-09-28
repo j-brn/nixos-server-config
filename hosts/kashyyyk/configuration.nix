@@ -1,17 +1,17 @@
-{ ... }:
+{ self, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./ipv6.nix
 
     # shared deployments
-    ../../deployments/reverse-proxy
-    ../../deployments/watchtower
+    "${self}/deployments/reverse-proxy"
+    "${self}/deployments/watchtower"
 
     # deployments
-    ./deployments/bookstack
-    ./deployments/vaultwarden
-    ./deployments/node-exporter
+    ./deployments/bookstack.nix
+    ./deployments/vaultwarden.nix
+    ./deployments/node-exporter.nix
   ];
 
   networking.hostName = "kashyyyk";

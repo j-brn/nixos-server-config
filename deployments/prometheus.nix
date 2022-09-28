@@ -1,3 +1,4 @@
+{ prometheusConfigPath, prometheusAuthConfigPath, ... }:
 {
   config = {
     services = {
@@ -13,8 +14,8 @@
 
         volumes = [
           "prometheus_data:/prometheus"
-          "/run/prometheus.yml:/etc/prometheus/prometheus.yml"
-          "/run/prometheus-auth.yml:/etc/prometheus/prometheus-auth.yml"
+          "${prometheusConfigPath}:/etc/prometheus/prometheus.yml"
+          "${prometheusAuthConfigPath}:/etc/prometheus/prometheus-auth.yml"
         ];
 
         networks = [
