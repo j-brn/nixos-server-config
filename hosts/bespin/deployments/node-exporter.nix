@@ -1,6 +1,6 @@
 { self, config, ... }:
 {
-  age.secrets.node-exporter-auth_yml = {
+  age.secrets.nodeExporterAuthConfig = {
     file = "${self}/secrets/node-exporter-auth.yml.age";
     owner = "nobody";
   };
@@ -14,7 +14,7 @@
     imports = [
       (import "${self}/deployments/node-exporter.nix" {
         host = "bespin.bricker.io";
-        authConfigPath = config.age.secrets.node-exporter-auth_yml.path;
+        authConfigPath = config.age.secrets.nodeExporterAuthConfig.path;
       })
     ];
   };
