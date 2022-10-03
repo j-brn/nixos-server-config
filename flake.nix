@@ -73,7 +73,7 @@
 
         scarif = {
           sshOpts = [ "-p" "222" ];
-          hostname = "167.235.135.95";
+          hostname = "scarif.bricker.io";
           fastConnection = true;
 
           profiles.system = {
