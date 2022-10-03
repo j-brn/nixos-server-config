@@ -18,7 +18,7 @@
           "SMTP_FROM" = "noreply@vaultwarden.bricker.io";
           "SMTP_PORT" = 25;
           # OK because this mailer is only reachable from within the "mailer" network
-          "SMTP_SSL" = "false";
+          "SMTP_SECURITY" = "off";
         };
         env_file = [ environmentFilePath ];
         volumes = [ "vaultwarden_data:/data" ];
