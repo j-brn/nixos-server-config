@@ -1,4 +1,7 @@
-{ self, ... }:
+{ self, config, ... }:
+let
+  host = "kashyyyk.bricker.io";
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -7,11 +10,11 @@
     # shared deployments
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
+    (import "${self}/deployments/node-exporter" { inherit host; inherit self; inherit config; })
 
     # deployments
     ./deployments/bookstack.nix
     ./deployments/vaultwarden.nix
-    ./deployments/node-exporter.nix
   ];
 
   networking.hostName = "kashyyyk";

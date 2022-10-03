@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ host, self, config, ... }:
 {
   age.secrets.nodeExporterAuthConfig = {
     file = "${self}/secrets/node-exporter-auth.yml.age";
@@ -12,8 +12,8 @@
 
   virtualisation.arion.projects.node-exporter.settings = {
     imports = [
-      (import "${self}/deployments/node-exporter.nix" {
-        host = "kashyyyk.bricker.io";
+      (import ./arion-compose.nix {
+        inherit host;
         authConfigPath = config.age.secrets.nodeExporterAuthConfig.path;
       })
     ];
