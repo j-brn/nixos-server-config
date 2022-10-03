@@ -31,6 +31,17 @@
             ./hosts/bespin/configuration.nix
           ];
         };
+
+        "scarif" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            agenix.nixosModule
+            arion.nixosModules.arion
+            ./default.nix
+            ./hosts/scarif/configuration.nix
+          ];
+        };
       };
 
       deploy.nodes = {
@@ -56,6 +67,19 @@
             sshUser = "admin";
             path =
               deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bespin;
+            user = "root";
+          };
+        };
+
+        scarif = {
+          sshOpts = [ "-p" "222" ];
+          hostname = "167.235.135.95";
+          fastConnection = true;
+
+          profiles.system = {
+            sshUser = "admin";
+            path =
+              deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.scarif;
             user = "root";
           };
         };
