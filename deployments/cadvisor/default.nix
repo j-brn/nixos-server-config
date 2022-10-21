@@ -1,4 +1,4 @@
-{ host, self, config, pkgs, ... }:
+{ host }: { self, config, pkgs, ... }:
 let
   nginxBasicAuthConfig = pkgs.writeText "${host}"
     ''

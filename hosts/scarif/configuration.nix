@@ -10,7 +10,7 @@ in
     # shared deployments
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
-    (import "${self}/deployments/node-exporter" { inherit host; inherit self; inherit config; })
+    (import "${self}/deployments/node-exporter" { inherit host; })
   ];
 
   networking.hostName = "scarif";

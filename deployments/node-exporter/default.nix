@@ -1,4 +1,4 @@
-{ host, self, config, ... }:
+{ host }: { self, config, ... }:
 {
   age.secrets.nodeExporterAuthConfig = {
     file = "${self}/secrets/node-exporter-auth.yml.age";

@@ -3,7 +3,7 @@
   config = {
     services = {
       cadvisor.service = {
-        image = "gcr.io/cadvisor/cadvisor:v0.45.0";
+        image = "gcr.io/cadvisor/cadvisor:v0.45";
         restart = "unless-stopped";
         privileged = true;
 
@@ -16,6 +16,8 @@
         };
 
         volumes = [
+          "/etc/localtime:/etc/localtime:ro"
+          "/etc/timezone:/etc/timezone:ro"
           "/:/rootfs:ro"
           "/var/run:/var/run:ro"
           "/sys:/sys:ro"
