@@ -11,6 +11,13 @@ in
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
     (import "${self}/deployments/node-exporter" { inherit host; })
+
+    # garrysmod
+    (import "${self}/deployments/garrysmod" {
+      gamemode = "terrortown";
+      map = "ttt_minecraft_b5";
+      workshopId = "854877450";
+    })
   ];
 
   networking.hostName = "scarif";

@@ -25,5 +25,8 @@ in
 
   # grafana
   "grafana/prometheus-datasource.yml.age".publicKeys = [ bespin jonas ];
+
+  # garrysmod
+  "garrysmod/secret-environment.env.age".publicKeys = [ scarif jonas ];
 }
 
