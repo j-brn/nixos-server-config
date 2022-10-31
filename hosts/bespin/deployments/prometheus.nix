@@ -1,13 +1,13 @@
 { self, config, ... }:
 {
   age.secrets = {
-    prometheusConfig = {
-      file = "${self}/secrets/prometheus.yml.age";
+    "prometheus/prometheus.yml" = {
+      file = "${self}/secrets/prometheus/prometheus.yml.age";
       owner = "nobody";
     };
 
-    prometheusAuthConfig = {
-      file = "${self}/secrets/prometheus-auth.yml.age";
+    "prometheus/auth.yml" = {
+      file = "${self}/secrets/prometheus/auth.yml.age";
       owner = "nobody";
     };
   };
@@ -20,8 +20,8 @@
   virtualisation.arion.projects.prometheus.settings = {
     imports = [
       (import "${self}/deployments/prometheus.nix" {
-        prometheusConfigPath = config.age.secrets.prometheusConfig.path;
-        prometheusAuthConfigPath = config.age.secrets.prometheusAuthConfig.path;
+        prometheusConfigPath = config.age.secrets."prometheus/prometheus.yml".path;
+        prometheusAuthConfigPath = config.age.secrets."prometheus/auth.yml".path;
       })
     ];
   };

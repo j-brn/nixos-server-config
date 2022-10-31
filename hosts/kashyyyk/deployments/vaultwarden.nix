@@ -1,7 +1,7 @@
 { self, config, ... }:
 {
-  age.secrets.vaultwardenEnvFile = {
-    file = "${self}/secrets/vaultwarden.env.age";
+  age.secrets."vaultwarden/environment.env" = {
+    file = "${self}/secrets/vaultwarden/environment.env.age";
   };
 
   virtualisation.docker.ensureNetworks = [ "proxy-network" ];
@@ -10,7 +10,7 @@
     imports = [
       (import "${self}/deployments/vaultwarden.nix" {
         host = "vaultwarden.bricker.io";
-        environmentFilePath = config.age.secrets.vaultwardenEnvFile.path;
+        environmentFilePath = config.age.secrets."vaultwarden/environment.env".path;
       })
     ];
   };

@@ -1,7 +1,7 @@
 { host }: { self, config, ... }:
 {
-  age.secrets.nodeExporterAuthConfig = {
-    file = "${self}/secrets/node-exporter-auth.yml.age";
+  age.secrets."node-exporter/auth.yml" = {
+    file = "${self}/secrets/node-exporter/auth.yml.age";
     owner = "nobody";
   };
 
@@ -14,7 +14,7 @@
     imports = [
       (import ./arion-compose.nix {
         inherit host;
-        authConfigPath = config.age.secrets.nodeExporterAuthConfig.path;
+        authConfigPath = config.age.secrets."node-exporter/auth.yml".path;
       })
     ];
   };

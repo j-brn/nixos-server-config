@@ -9,8 +9,8 @@ let
     '';
 in
 {
-  age.secrets.cadvisorHtpasswdFile = {
-    file = "${self}/secrets/cadvisor-htpasswd.age";
+  age.secrets."cadvisor/htpasswd" = {
+    file = "${self}/secrets/cadvisor/htpasswd.age";
   };
 
   virtualisation.docker.ensureNetworks = [
@@ -31,7 +31,7 @@ in
     imports = [
       (import ./arion-compose.nix {
         inherit host;
-        htpasswdFile = config.age.secrets.cadvisorHtpasswdFile.path;
+        htpasswdFile = config.age.secrets."cadvisor/htpasswd".path;
       })
     ];
   };

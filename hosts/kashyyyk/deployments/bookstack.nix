@@ -1,7 +1,7 @@
 { self, config, ... }:
 {
-  age.secrets.bookstackEnvironment = {
-    file = "${self}/secrets/bookstackEnvironment.env.age";
+  age.secrets."bookstack/environment.env" = {
+    file = "${self}/secrets/bookstack/environment.env.age";
   };
 
   virtualisation.docker.ensureNetworks = [ "proxy-network" ];
@@ -10,7 +10,7 @@
     imports = [
       (import "${self}/deployments/bookstack.nix" {
         host = "bookstack.bricker.io";
-        bookstackEnvironmentFilePath = config.age.secrets.bookstackEnvironment.path;
+        bookstackEnvironmentFilePath = config.age.secrets."bookstack/environment.env".path;
       })
     ];
   };

@@ -18,8 +18,8 @@ let
     '';
 in
 {
-  age.secrets.grafanaPrometheusDatasource = {
-    file = "${self}/secrets/grafanaPrometheusDatasource.yml.age";
+  age.secrets."grafana/prometheus-datasource.yml" = {
+    file = "${self}/secrets/grafana/prometheus-datasource.yml.age";
     owner = "472";
   };
 
@@ -33,7 +33,7 @@ in
       imports = [
         (import "${self}/deployments/grafana.nix" {
           host = "grafana.bricker.io";
-          prometheusDatasourceFilePath = config.age.secrets.grafanaPrometheusDatasource.path;
+          prometheusDatasourceFilePath = config.age.secrets."grafana/prometheus-datasource.yml".path;
           dashboardProviderFilePath = dashboardProvider;
           inherit node-exporter-dashboard;
         })

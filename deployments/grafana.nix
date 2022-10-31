@@ -3,7 +3,7 @@
   config = {
     services = {
       grafana.service = {
-        image = "docker.io/grafana/grafana:9.1.6";
+        image = "docker.io/grafana/grafana";
         restart = "unless-stopped";
 
         environment = {

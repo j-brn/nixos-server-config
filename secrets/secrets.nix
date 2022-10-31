@@ -7,14 +7,23 @@ let
   allKeys = [ kashyyyk bespin scarif jonas ];
 in
 {
-  # all hosts
-  "node-exporter-auth.yml.age".publicKeys = allKeys;
-  "cadvisor-htpasswd.age".publicKeys = allKeys;
+  # node-exporter
+  "node-exporter/auth.yml.age".publicKeys = allKeys;
 
-  "bookstackEnvironment.env.age".publicKeys = [ kashyyyk jonas ];
-  "vaultwarden.env.age".publicKeys = [ kashyyyk jonas ];
-  "prometheus.yml.age".publicKeys = [ bespin jonas ];
-  "prometheus-auth.yml.age".publicKeys = [ bespin jonas ];
-  "grafanaPrometheusDatasource.yml.age".publicKeys = [ bespin jonas ];
+  # cadvisor
+  "cadvisor/htpasswd.age".publicKeys = allKeys;
+
+  # bookstack
+  "bookstack/environment.env.age".publicKeys = [ kashyyyk jonas ];
+
+  # vaultwarden
+  "vaultwarden/environment.env.age".publicKeys = [ kashyyyk jonas ];
+
+  # prometheus
+  "prometheus/prometheus.yml.age".publicKeys = [ bespin jonas ];
+  "prometheus/auth.yml.age".publicKeys = [ bespin jonas ];
+
+  # grafana
+  "grafana/prometheus-datasource.yml.age".publicKeys = [ bespin jonas ];
 }
 
