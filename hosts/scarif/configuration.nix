@@ -15,7 +15,7 @@ in
     # garrysmod
     (import "${self}/deployments/garrysmod" {
       gamemode = "terrortown";
-      map = "ttt_minecraft_b5";
+      map = "ttt_waterworld";
       workshopId = "854877450";
     })
   ];

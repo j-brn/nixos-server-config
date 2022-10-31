@@ -20,6 +20,18 @@
           "27015:27015/tcp"
           "27015:27015/udp"
         ];
+
+        volumes = [
+          "overlay:/opt/overlay"
+          "cache:/opt/steam"
+        ];
+      };
+    };
+
+    docker-compose.raw = {
+      volumes = {
+        overlay = { };
+        cache = { };
       };
     };
   };
