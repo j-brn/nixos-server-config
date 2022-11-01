@@ -15,8 +15,8 @@ in
     # garrysmod
     (import "${self}/deployments/garrysmod" {
       gamemode = "terrortown";
-      map = "ttt_waterworld";
-      workshopId = "854877450";
+      map = "ttt_camel_v1";
+      workshopId = "720833518";
     })
   ];
 
@@ -28,5 +28,5 @@ in
     devices = [ "/dev/sda" ];
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "22.05";
 }

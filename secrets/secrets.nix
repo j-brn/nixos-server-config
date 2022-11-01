@@ -28,5 +28,6 @@ in
 
   # garrysmod
   "garrysmod/secret-environment.env.age".publicKeys = [ scarif jonas ];
+  "garrysmod/server.cfg.age".publicKeys = [ scarif jonas ];
 }
 

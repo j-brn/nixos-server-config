@@ -1,4 +1,4 @@
-{ gamemode, map, workshopId, secretEnvFile, ... }:
+{ gamemode, map, workshopId, configFile, secretEnvFile, ... }:
 {
   config = {
     services = {
@@ -12,6 +12,7 @@
           "MAP" = map;
           "WORKSHOP" = workshopId;
           "WORKSHOPDL" = workshopId;
+          "TICKRATE" = "128";
         };
 
         env_file = [ secretEnvFile ];
@@ -22,6 +23,7 @@
         ];
 
         volumes = [
+          "${configFile}:/opt/steam/garrysmod/cfg/server.cfg"
           "overlay:/opt/overlay"
           "cache:/opt/steam"
         ];
