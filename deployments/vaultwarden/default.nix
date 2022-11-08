@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ host }: { self, config, ... }:
 {
   age.secrets."vaultwarden/environment.env" = {
     file = "${self}/secrets/vaultwarden/environment.env.age";
@@ -8,9 +8,9 @@
 
   virtualisation.arion.projects.vaultwarden.settings = {
     imports = [
-      (import "${self}/deployments/vaultwarden.nix" {
-        host = "vaultwarden.bricker.io";
-        environmentFilePath = config.age.secrets."vaultwarden/environment.env".path;
+      (import ./arion-compose.nix {
+        inherit host;
+        vaultwardenEnvironment = config.age.secrets."vaultwarden/environment.env".path;
       })
     ];
   };

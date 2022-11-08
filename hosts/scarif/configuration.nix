@@ -7,12 +7,12 @@ in
     ./hardware-configuration.nix
     ./ipv6.nix
 
-    # shared deployments
+    # deployments
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
+
     (import "${self}/deployments/node-exporter" { inherit host; })
 
-    # garrysmod
     (import "${self}/deployments/garrysmod" {
       gamemode = "terrortown";
       map = "ttt_camel_v1";

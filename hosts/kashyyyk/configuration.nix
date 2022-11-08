@@ -7,14 +7,13 @@ in
     ./hardware-configuration.nix
     ./ipv6.nix
 
-    # shared deployments
+    # deployments
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
-    (import "${self}/deployments/node-exporter" { inherit host; })
 
-    # deployments
-    ./deployments/bookstack.nix
-    ./deployments/vaultwarden.nix
+    (import "${self}/deployments/node-exporter" { inherit host; })
+    (import "${self}/deployments/bookstack" { inherit host; })
+    (import "${self}/deployments/vaultwarden" { inherit host; })
   ];
 
   networking.hostName = "kashyyyk";

@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ host }: { self, config, ... }:
 {
   age.secrets."bookstack/environment.env" = {
     file = "${self}/secrets/bookstack/environment.env.age";
@@ -8,9 +8,9 @@
 
   virtualisation.arion.projects.bookstack.settings = {
     imports = [
-      (import "${self}/deployments/bookstack.nix" {
-        host = "bookstack.bricker.io";
-        bookstackEnvironmentFilePath = config.age.secrets."bookstack/environment.env".path;
+      (import ./arion-compose.nix {
+        inherit host;
+        bookstackEnvironment = config.age.secrets."bookstack/environment.env".path;
       })
     ];
   };

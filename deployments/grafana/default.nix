@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ host }: { self, config, pkgs, ... }:
 let
   node-exporter-dashboard = pkgs.fetchurl {
     url = "https://gist.githubusercontent.com/j-brn/37c729bf627436e93103587305b4e7fa/raw/d8c1f8d8a82bb7a26b896229b032c73d3ae2c5d1/node-exporter.json";
@@ -31,11 +31,11 @@ in
 
     arion.projects.grafana.settings = {
       imports = [
-        (import "${self}/deployments/grafana.nix" {
-          host = "grafana.bricker.io";
-          prometheusDatasourceFilePath = config.age.secrets."grafana/prometheus-datasource.yml".path;
-          dashboardProviderFilePath = dashboardProvider;
+        (import ./arion-compose.nix {
+          inherit host;
           inherit node-exporter-dashboard;
+          inherit dashboardProvider;
+          prometheusDatasource = config.age.secrets."grafana/prometheus-datasource.yml".path;
         })
       ];
     };

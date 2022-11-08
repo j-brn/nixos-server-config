@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ host }: { self, config, ... }:
 {
   age.secrets = {
     "prometheus/prometheus.yml" = {
@@ -19,9 +19,10 @@
 
   virtualisation.arion.projects.prometheus.settings = {
     imports = [
-      (import "${self}/deployments/prometheus.nix" {
-        prometheusConfigPath = config.age.secrets."prometheus/prometheus.yml".path;
-        prometheusAuthConfigPath = config.age.secrets."prometheus/auth.yml".path;
+      (import ./arion-compose.nix {
+        inherit host;
+        prometheusConfig = config.age.secrets."prometheus/prometheus.yml".path;
+        prometheusAuthConfig = config.age.secrets."prometheus/auth.yml".path;
       })
     ];
   };

@@ -1,4 +1,4 @@
-{ host, bookstackEnvironmentFilePath, ... }:
+{ host, bookstackEnvironment, ... }:
 {
   config = {
     services = {
@@ -12,7 +12,7 @@
           "VIRTUAL_HOST" = host;
           "LETSENCRYPT_HOST" = host;
         };
-        env_file = [ bookstackEnvironmentFilePath ];
+        env_file = [ bookstackEnvironment ];
         volumes = [ "bookstack_data:/config" ];
         networks = [
           "proxy-network"
@@ -28,7 +28,7 @@
           "PGID" = 1000;
           "TZ" = "Europe/Berlin";
         };
-        env_file = [ bookstackEnvironmentFilePath ];
+        env_file = [ bookstackEnvironment ];
         volumes = [ "mariadb_data:/config" ];
         networks = [ "bookstack" ];
       };

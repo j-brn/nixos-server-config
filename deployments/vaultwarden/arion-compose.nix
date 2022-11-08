@@ -1,4 +1,4 @@
-{ host, environmentFilePath }:
+{ host, vaultwardenEnvironment }:
 {
   config = {
     services = {
@@ -20,7 +20,7 @@
           # OK because this mailer is only reachable from within the "mailer" network
           "SMTP_SECURITY" = "off";
         };
-        env_file = [ environmentFilePath ];
+        env_file = [ vaultwardenEnvironment ];
         volumes = [ "vaultwarden_data:/data" ];
         networks = [
           "proxy-network"

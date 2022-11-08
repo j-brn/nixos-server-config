@@ -12,10 +12,8 @@ in
     "${self}/deployments/watchtower"
     (import "${self}/deployments/node-exporter" { inherit host; })
     #(import "${self}/deployments/cadvisor" { inherit host; })
-
-    # deployments
-    ./deployments/prometheus.nix
-    ./deployments/grafana.nix
+    (import "${self}/deployments/prometheus" { inherit host; })
+    (import "${self}/deployments/grafana" { inherit host; })
   ];
 
   networking.hostName = "bespin";

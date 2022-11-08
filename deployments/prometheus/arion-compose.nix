@@ -1,4 +1,4 @@
-{ prometheusConfigPath, prometheusAuthConfigPath, ... }:
+{ host, prometheusConfig, prometheusAuthConfig, ... }:
 {
   config = {
     services = {
@@ -7,15 +7,15 @@
         restart = "unless-stopped";
 
         environment = {
-          "VIRTUAL_HOST" = "prometheus.bricker.io";
+          "VIRTUAL_HOST" = host;
           "VIRTUAL_PORT" = 9090;
-          "LETSENCRYPT_HOST" = "prometheus.bricker.io";
+          "LETSENCRYPT_HOST" = host;
         };
 
         volumes = [
           "prometheus_data:/prometheus"
-          "${prometheusConfigPath}:/etc/prometheus/prometheus.yml"
-          "${prometheusAuthConfigPath}:/etc/prometheus/prometheus-auth.yml"
+          "${prometheusConfig}:/etc/prometheus/prometheus.yml"
+          "${prometheusAuthConfig}:/etc/prometheus/prometheus-auth.yml"
         ];
 
         networks = [
