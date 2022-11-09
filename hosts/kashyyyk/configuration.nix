@@ -12,8 +12,8 @@ in
     "${self}/deployments/watchtower"
 
     (import "${self}/deployments/node-exporter" { inherit host; })
-    (import "${self}/deployments/bookstack" { inherit host; })
-    (import "${self}/deployments/vaultwarden" { inherit host; })
+    (import "${self}/deployments/bookstack" { host = "bookstack.bricker.io"; })
+    (import "${self}/deployments/vaultwarden" { host = "vaultwarden.bricker.io"; })
   ];
 
   networking.hostName = "kashyyyk";

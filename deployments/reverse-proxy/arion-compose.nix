@@ -2,7 +2,7 @@
   config = {
     services = {
       nginx-proxy.service = {
-        image = "nginxproxy/nginx-proxy";
+        image = "nginxproxy/nginx-proxy:1.0.1";
         restart = "always";
 
         ports = [
@@ -29,7 +29,7 @@
       };
 
       acme-compantion.service = {
-        image = "nginxproxy/acme-companion";
+        image = "nginxproxy/acme-companion:2.2.1";
         restart = "always";
 
         volumes = [

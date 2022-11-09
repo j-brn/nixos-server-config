@@ -39,7 +39,7 @@
       proxy-network = {
         external = true;
       };
-      mailer = {};
+      mailer = { };
     };
 
     docker-compose.raw = {
