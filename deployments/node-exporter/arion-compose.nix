@@ -3,7 +3,7 @@
   config = {
     services = {
       node-exporter.service = {
-        image = "prom/node-exporter";
+        image = "prom/node-exporter:v1.4.0";
         restart = "unless-stopped";
 
         environment = {

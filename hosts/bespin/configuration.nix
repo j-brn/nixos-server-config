@@ -1,7 +1,4 @@
 { self, config, pkgs, ... }:
-let
-  host = "bespin.bricker.io";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -10,8 +7,8 @@ in
     # shared deployments
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
-    (import "${self}/deployments/node-exporter" { inherit host; })
-    #(import "${self}/deployments/cadvisor" { inherit host; })
+
+    (import "${self}/deployments/node-exporter" { host = "bespin.bricker.io"; })
     (import "${self}/deployments/prometheus" { host = "prometheus.bricker.io"; })
     (import "${self}/deployments/grafana" { host = "grafana.bricker.io"; })
   ];

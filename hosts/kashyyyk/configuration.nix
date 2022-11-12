@@ -1,7 +1,4 @@
 { self, config, ... }:
-let
-  host = "kashyyyk.bricker.io";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -11,7 +8,7 @@ in
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
 
-    (import "${self}/deployments/node-exporter" { inherit host; })
+    (import "${self}/deployments/node-exporter" { host = "kashyyyk.bricker.io"; })
     (import "${self}/deployments/bookstack" { host = "bookstack.bricker.io"; })
     (import "${self}/deployments/vaultwarden" { host = "vaultwarden.bricker.io"; })
   ];

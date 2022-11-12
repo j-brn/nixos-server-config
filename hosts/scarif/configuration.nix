@@ -1,7 +1,4 @@
 { self, config, ... }:
-let
-  host = "scarif.bricker.io";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -11,7 +8,7 @@ in
     "${self}/deployments/reverse-proxy"
     "${self}/deployments/watchtower"
 
-    (import "${self}/deployments/node-exporter" { inherit host; })
+    (import "${self}/deployments/node-exporter" { host = "scarif.bricker.io"; })
 
     (import "${self}/deployments/garrysmod" {
       gamemode = "terrortown";
