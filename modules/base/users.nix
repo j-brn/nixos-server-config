@@ -9,8 +9,8 @@
     ];
 
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG3eO5g2TPLcE3pzt/6XiGqGjbAeCr41s+5mSR0aZuHt jonas@thinkpad-jb"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINmS1P4VKH5w/7vDI+wMTp96E1SjWv7TNOE8g5ziVRTD openpgp:0x872B10AD"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG3eO5g2TPLcE3pzt/6XiGqGjbAeCr41s+5mSR0aZuHt jonas@chimaera"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICmJcISk17khA5bcCSwV2I4tGdSEHoXqarvMQHxHgyqb github-actions@bricker.io"
     ];
   };
 
