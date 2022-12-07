@@ -51,7 +51,7 @@ jobs:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
       - name: Populate known_hosts
-        run: echo ${{secrets.DEPLOY_HOSTS}} | xargs ssh-keyscan -H -p 222 >> ~/.ssh/known_hosts
+        run: xargs ssh-keyscan -H -p 222 >> ~/.ssh/known_hosts < hosts.txt
 
       - name: Deploy
         run: nix develop --command deploy
