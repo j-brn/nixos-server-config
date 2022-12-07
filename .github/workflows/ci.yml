@@ -1,0 +1,57 @@
+name: ci
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v17
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Configure binary cache
+        uses: cachix/cachix-action@v11
+        with:
+          name: brickerio
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Flake check
+        run: nix flake check
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/head/master'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v17
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Configure binary cache
+        uses: cachix/cachix-action@v11
+        with:
+          name: brickerio
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Load ssh key
+        uses: webfactory/ssh-agent@v0.6.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Populate known_hosts
+        run: echo ${{secrets.DEPLOY_HOSTS}} | xargs ssh-keyscan -H -p 222 >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: nix develop --command deploy
