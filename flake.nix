@@ -113,4 +113,9 @@
       checks = deploy-rs.lib.${system}.deployChecks self.deploy;
     };
   };
+
+  nixConfig = {
+    extra-substituters = [ "https://brickerio.cachix.org"];
+    extra-trusted-public-keys = [ "brickerio.cachix.org-1:/V5638vNSgY2Gy5G6Yn9AFDLi7ZSNLpdWqE8LGkJP9M=" ];
+  };
 }
