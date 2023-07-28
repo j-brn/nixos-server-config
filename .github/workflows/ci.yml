@@ -53,5 +53,8 @@ jobs:
       - name: Populate known_hosts
         run: nix develop --command keyscan > ~/.ssh/known_hosts
 
+      - name: Check kernel version
+        uses: j-brn/reboot-on-nixos-kernel-change-action@c7cbd58
+
       - name: Deploy
-        run: nix develop --command deploy
+        run: nix develop --command "deploy --auto-rollback false"
